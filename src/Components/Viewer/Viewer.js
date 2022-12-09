@@ -14,7 +14,7 @@ export default function Viewer() {
   
   useEffect(() => {
     async function getCats() {
-      const response = await fetch(`http://localhost:3001/api/cats`);
+      const response = await fetch(`https://cat-app-back-end.onrender.com/api/cats`);
       const data = await response.json();
       setCats(data.payload);
     }
