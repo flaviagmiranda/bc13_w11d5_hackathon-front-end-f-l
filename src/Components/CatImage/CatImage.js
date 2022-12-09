@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function CatImage({ cats }) {
+export default function CatImage({ cats, currentCat }) {
+
+
   return (
-    <img src={`https://cataas.com/cat/${cats[0]?.id}`} alt="cat" />
+    <img src={`https://cataas.com/cat/${cats[currentCat]?.id}`} alt="cat" />
   )
 };

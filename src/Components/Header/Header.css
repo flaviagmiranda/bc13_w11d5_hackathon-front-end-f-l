@@ -4,3 +4,15 @@ header {
     align-items: center;
     width: 100%;
 }
+
+.header-light {
+    background-color: beige;
+}
+
+.header-dark {
+    background-color: black;
+}
+
+.header-dark > h1 {
+    color: white;
+}
