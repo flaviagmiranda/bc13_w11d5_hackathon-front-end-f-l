@@ -1,0 +1,18 @@
+.carousel-item > img {
+    width: 800px;
+    height: 800px;
+}
+
+
+.carousel {
+    width:900px;
+    height:500px;
+    margin: auto;
+  }
+
+  @media (max-width: 900px) {
+    .carousel {
+      width:auto;
+      height:auto;
+    }
+}

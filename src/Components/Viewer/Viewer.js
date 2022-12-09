@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
-import CarouselButton from '../Carousel Button/CarouselButton'
-//import ImagePosition from '../Image Position/ImagePosition'
 //import Fact from '../Fact/Fact.js'
 import './Viewer.css'
-import CatImage from '../CatImage/CatImage'
 import useClassNameConstructor from '../../Custom Hooks/useClassNameConstructor'
+import CatCarousel from '../CatCarousel/CatCarousel'
 
 export default function Viewer() {
-  const [cats, setCats] = useState([]) // will become custom hook that fetches array of all cat ids from backend
-  const [currentCat, setCurrentCat] = useState(0)
+  const [cats, setCats] = useState([])
+  const [facts, setFacts] = useState([])
 
   const className = useClassNameConstructor("viewer")
   
@@ -21,13 +19,20 @@ export default function Viewer() {
     getCats();
   }, []);
 
+  useEffect(() => {
+    async function getCatFacts() {
+      const response = await fetch(`https://meowfacts.herokuapp.com/?count=5`);
+      const data = await response.json();
+      console.log(data)
+      setFacts(data.data);
+    }
+    getCatFacts();
+  }, []);
+
   return (
   <main className={className}>
-    <div className="carousel" >
-      <CarouselButton direction='<' currentCat={currentCat} setCurrentCat={setCurrentCat} cats={cats} />
-      <CatImage cats={cats} currentCat={currentCat}/>
-      <CarouselButton direction='>'  currentCat={currentCat} setCurrentCat={setCurrentCat}/>
-    </div>
+    <CatCarousel cats={cats} facts={facts} />
+    
     {/* <ImagePosition />
     <Fact /> */}
   </main>
