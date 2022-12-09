@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
 import CarouselButton from '../Carousel Button/CarouselButton'
-import ImagePosition from '../Image Position/ImagePosition'
-import Fact from '../Fact/Fact.js'
+//import ImagePosition from '../Image Position/ImagePosition'
+//import Fact from '../Fact/Fact.js'
 import './Viewer.css'
 import CatImage from '../CatImage/CatImage'
-import { ThemeContext } from '../../Custom Hooks/ThemeContext'
+import useClassNameConstructor from '../../Custom Hooks/useClassNameConstructor'
 
 export default function Viewer() {
-  const theme = useContext(ThemeContext);
-
-  const [cats, setCats] = useState({}) // will become custom hook that fetches array of all cats from backend
+  const [cats, setCats] = useState([]) // will become custom hook that fetches array of all cat ids from backend
   const [currentCat, setCurrentCat] = useState(0)
+
+  const className = useClassNameConstructor("viewer")
   
   useEffect(() => {
     async function getCats() {
@@ -21,17 +21,15 @@ export default function Viewer() {
     getCats();
   }, []);
 
-  const className = 'viewer-' + theme;
-
   return (
   <main className={className}>
     <div className="carousel" >
-      <CarouselButton direction='<' currentCat={currentCat} setCurrentCat={setCurrentCat}/>
+      <CarouselButton direction='<' currentCat={currentCat} setCurrentCat={setCurrentCat} cats={cats} />
       <CatImage cats={cats} currentCat={currentCat}/>
       <CarouselButton direction='>'  currentCat={currentCat} setCurrentCat={setCurrentCat}/>
     </div>
-    <ImagePosition />
-    <Fact />
+    {/* <ImagePosition />
+    <Fact /> */}
   </main>
   )
 }

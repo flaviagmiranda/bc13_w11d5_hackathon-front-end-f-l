@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../Custom Hooks/ThemeContext";
+import React from "react";
+import useClassNameConstructor from "../../Custom Hooks/useClassNameConstructor";
 import ThemeSwitcher from "../Theme Switcher/ThemeSwitcher";
 import './Header.css'
 
 export default function Header({ colour, setColour }) {
-  const theme = useContext(ThemeContext);
-  const className = 'header-' + theme;
+  const className = useClassNameConstructor("header")
   return (
     <header className={className}>
       <h1>Cat App</h1>
